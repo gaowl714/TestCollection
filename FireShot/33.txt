@@ -1,0 +1,41 @@
+
+package layer;
+   
+  /**
+   * Created by Liyh on 2017/9/18.
+   */
+  public class AvatarView {
+     public void displayAvatar(int userId){
+         String url = AvatarBizz.getAvatarUrl(userId);
+   
+         //此处省略渲染代码
+         return;
+     }
+  }
+
+
+
+package layer;
+   
+  /**
+   * Created by Liyh on 2017/9/18.
+   */
+  public class AvatarBizz {
+     public static String getAvatarUrl(int userId){
+         return AvatarDao.getAvatarUrl(userId);
+     }
+  }
+
+
+
+package layer;
+   
+  /**
+   * Created by Liyh on 2017/9/18.
+   */
+  public class AvatarDao {
+     public static String getAvatarUrl(int userId) {
+       //此处省略具体实现代码，正常情况下可以从MySQL数据库中通过userId查询头像URL即可
+         return "http://avatar.csdn.net/B/8/3/1_yah99_wolf.jpg";
+     }
+  }

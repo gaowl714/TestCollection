@@ -1,0 +1,55 @@
+
+// MANIFEST.MF 
+  Bundle-ManifestVersion: 2 
+  Bundle-Name:UserRegister
+  Bundle-SymbolicName: com.test.userregister 
+  Bundle-Version: 1.0 
+  Bundle-Activator: com.test.UserRegisterActivator
+   
+  Import-Package: org.log4j;version="2.0", 
+  ..... 
+  Export-Package: com.test.userregister;version="1.0", 
+
+
+
+
+public class UserRegisterActivator implements BundleActivator { 
+   
+   public void start(BundleContext context) { 
+       UserRegister.instance = new UserRegister (); 
+   } 
+   
+   public void stop(BundleContext context) { 
+       UserRegister.instance = null; 
+   } 
+  } 
+
+
+
+
+
+
+// 注册服务
+public class UserRegisterActivator implements BundleActivator {
+//在start()中用BundleContext.registerService()注册服务
+public void start(BundleContext context) {
+context.registerService(UserRegister.class.getName(), new UserRegisterImpl(), null);
+}
+//无须在stop()中注销服务，因为Bundle停止时会自动注销该Bundle中已注册的服务
+public void stop(BundleContext context) {}
+}
+// 检索服务
+public class Client implements BundleActivator {
+public void start(BundleContext context) {
+// 1. 从服务注册表中检索间接的“服务引用”
+ServiceReference ref = context.getServiceReference(UserRegister.class.getName());
+// 2. 使用“服务引用”去访问服务对象的实例
+((UserRegister) context.getService(ref)).register();
+}
+public void stop(BundleContext context) {}
+}
+
+
+
+https://blog.csdn.net/ouyangshixiong/article/details/46315273
+https://cloud.tencent.com/developer/article/1031839
