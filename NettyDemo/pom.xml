@@ -6,7 +6,11 @@
 
     <groupId>org.example</groupId>
     <artifactId>NettyDemo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>EchoServer</module>
+    </modules>
 
 
     <dependencies>
@@ -17,4 +21,6 @@
             <version>4.1.48.Final</version>
         </dependency>
     </dependencies>
+
+
 </project>
